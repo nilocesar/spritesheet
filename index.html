@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link type="text/css" href="css/style.css" rel="stylesheet" media="all">
+	<title>spriteSheet</title>
+</head>
+
+<body>
+
+	<div class="logo" style="left: 40px; top: 40px;">
+		<div class="logoStrip">
+			<img src="img/logo.png" width="163" height="2160" alt="" title="">
+		</div>
+	</div>
+
+	<script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
+
+	<script>
+		$(document).ready(
+			function () {
+				$(window).load(
+					function () {
+						// MOTION 
+						setTimeout( motionInit, 1000 * 0.5 );
+					}
+				);
+			}
+		);
+
+
+		function motionInit() {
+			
+			animateSpritesheet(".logoStrip", 72, 29);
+			
+			function animateSpritesheet(target, amount, numFrames) 
+			{
+				var incr, moveImage, newPos;
+				moveImage = function () {
+					newPos -= incr;
+					$(target).css("marginTop", newPos);
+					if (newPos > -(amount * numFrames)) {
+						return setTimeout(moveImage, 30);
+					}
+				};
+				incr = amount;
+				newPos = 0;
+				return moveImage();
+			};
+		}
+	</script>
+</body>
+
+
+
+
+</html>
